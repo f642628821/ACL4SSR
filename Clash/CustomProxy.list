@@ -1,4 +1,5 @@
 # 自定义代理配置
+DOMAIN-SUFFIX,msecnd.net
 DOMAIN-SUFFIX,v2ex.com
 DOMAIN-SUFFIX,telegram.how
 DOMAIN-SUFFIX,msftauth.com
