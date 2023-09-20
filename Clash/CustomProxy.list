@@ -52,3 +52,5 @@ DOMAIN-SUFFIX,maxmind.com
 DOMAIN-SUFFIX,misskey.io
 DOMAIN-SUFFIX,spreadshirt.com
 DOMAIN-SUFFIX,huggingface.co
+DOMAIN-SUFFIX,bootstrapcdn.com
+DOMAIN-SUFFIX,bluebirdjs.com
