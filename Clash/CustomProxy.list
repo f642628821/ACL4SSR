@@ -101,3 +101,7 @@ DOMAIN-SUFFIX,rackcdn.com
 DOMAIN-SUFFIX,apache.org
 DOMAIN-SUFFIX,alfresco.com
 DOMAIN-SUFFIX,spring.io
+DOMAIN-SUFFIX,steamstatic.com
+DOMAIN-SUFFIX,steampowered.com
+DOMAIN-SUFFIX,steamcommunity.com
+DOMAIN-SUFFIX,eclipse.org
