@@ -1,6 +1,14 @@
 # 自定义直连配置
 DOMAIN-SUFFIX,mecdn.com
 DOMAIN-SUFFIX,aimoxia.com
+DOMAIN-SUFFIX,rewards.bing.com
+DOMAIN-SUFFIX,storage.bing.com
+DOMAIN-SUFFIX,cn.bing.com
+DOMAIN-SUFFIX,www.bing.com
+DOMAIN-SUFFIX,edge.microsoft.com
+DOMAIN-SUFFIX,login.live.com
+DOMAIN-SUFFIX,login.live.com
+DOMAIN-SUFFIX,prod.rewardsplatform.microsoft.com
 IP-CIDR,192.168.0.0/16,no-resolve
 IP-CIDR,172.16.0.0/12,no-resolve
 IP-CIDR,10.0.0.0/8,no-resolve
