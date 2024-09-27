@@ -107,6 +107,6 @@ DOMAIN-SUFFIX,steamcommunity.com
 DOMAIN-SUFFIX,eclipse.org
 DOMAIN-SUFFIX,copilot.microsoft.com
 DOMAIN-SUFFIX,mobile.events.data.microsoft.com
-DOMAIN-SUFFIX,www.bing.com
+# DOMAIN-SUFFIX,www.bing.com
 DOMAIN-SUFFIX,sydney.bing.com
 DOMAIN-SUFFIX,services.bingapis.com
