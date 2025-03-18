@@ -31,7 +31,7 @@
     $logEl.style.width = '500px';
     $logEl.style.height = '500px';
     $logEl.style.right = '0';
-    $logEl.style.top = '0';
+    $logEl.style.top = '100px';
     $logEl.style.zIndex = 99999;
     $logEl.style.border = '1px solid red';
     $logEl.style.padding = '10px';
@@ -44,6 +44,15 @@
         $logEl.innerHTML = logs.reduce((str, logItem) => {
             return str + '<br/>' + logItem.join(' ');
         }, '');
+    }
+    function __timeLog(...args) {
+        const timeLogElId = '__time_log_el';
+        const $timeLogEl = $logEl.querySelector('#' + timeLogElId);
+        if (!$timeLogEl) {
+            $logEl.innerHTML += `<br/><div id="${timeLogElId}">${args.join(' ')}</div>`;
+        } else {
+            $timeLogEl.innerHTML = args.join(' ');
+        }
     }
     async function waitFor(selector, count = 0) {
         const $el = _window.document.querySelector(selector);
@@ -76,10 +85,10 @@
         //btn.click();
     }
     _window.document.body.appendChild($logEl);
-    const $idrc = await waitFor('#id_rc');
+    let $idrc = await waitFor('#rh_rwm');
     //debugger;
     if (!$idrc) {
-        __log('没找到元素#id_rc')
+        __log('没找到元素#rh_rwm')
         _window.setTimeout(() => {
             _window.location.reload();
         }, 5e3);
@@ -91,7 +100,8 @@
         currentCount = parseInt(localStorage.getItem(currentCountKey) || 0),
         todayrewards = parseInt(localStorage.getItem(todayrewardsKey) || 0),
         todayIndexs = JSON.parse(localStorage.getItem(todayIndexKey) || '[]'),
-        todayComplete = JSON.parse(localStorage.getItem(todayCompleteKey) || '{}');
+        todayComplete = JSON.parse(localStorage.getItem(todayCompleteKey) || '{}'),
+        currentRewards = parseInt(_window.document.getElementById('rh_rwm').innerText.trim());
     __log('当前积分:', rewardsNum);
     __log('当前关键词:', currentKeyword);
     __log('上次关键词:', preKeyword || '无');
@@ -101,17 +111,25 @@
     const __timeout = _window.setTimeout(() => {
         run();
     }, 5e3);
+    const longTime = true,
+          totalSeconds = 15 * 60;
     function run () {
         if (isRunning) return;
         isRunning = true;
+        if (longTime) {
+            let countDown = totalSeconds;
+            setInterval(() => {
+                countDown --;
+                __timeLog(countDown, '秒后继续操作');
+            }, 1e3)
+        }
         _window.setTimeout(() => {
             __log("开始执行操作...");
             window.scrollTo(0, _window.document.body.clientHeight + 9000);
             let day = new Date(),
                 today = `${day.getFullYear()}-${(day.getMonth() + 1).toString().padStart(2, '0')}-${day.getDate().toString().padStart(2, '0')}`,
                 maxRewards = 81,
-                maxCount = 3,
-                currentRewards = parseInt(_window.document.getElementById('id_rc').innerText.trim());
+                maxCount = 3;
 
             const getRandomNumber = (min, max, rerandom = true) => {
                 let num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -213,12 +231,13 @@
                     localStorage.setItem(preKeywordKey, '');
                     localStorage.setItem(todayrewardsKey, 0);
                     localStorage.setItem(todayIndexKey, '');
+                    __log('已累计90积分，今天任务完成，已停止自动搜索，可以关掉页面了。');
                     return;
                 }
                 if (currentKeyword) {
                     localStorage.setItem(preKeywordKey, currentKeyword);
                 }
-                __log('开始搜索...', '页面积分：', currentRewards, '缓存积分：', rewardsNum);
+                __log('开始搜索...', '缓存积分：', rewardsNum, '页面积分：', currentRewards);
                 let keyword = '';
                 if (currentCount < maxCount) {
                     localStorage.setItem(currentCountKey, currentCount+1);
@@ -250,10 +269,14 @@
             } else {
                 alert("可以停掉了");
             }
-        }, 5e3);
+        }, (longTime ? totalSeconds : 5) * 1e3);
     }
     const observer = new MutationObserver(() => {
         if (__timeout) _window.clearTimeout(__timeout);
+        if ($idrc?.innerText) {
+            console.log($idrc.innerText);
+            currentRewards = parseInt($idrc.innerText.trim());
+        }
         run();
     });
     observer.observe($idrc, {
