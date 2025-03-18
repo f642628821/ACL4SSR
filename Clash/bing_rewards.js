@@ -112,15 +112,19 @@
         run();
     }, 5e3);
     const longTime = true,
-          totalSeconds = 15 * 60;
+          totalSeconds = (longTime ? 15 * 60 : 5);
     function run () {
         if (isRunning) return;
         isRunning = true;
         if (longTime) {
             let countDown = totalSeconds;
-            setInterval(() => {
+            let __interval = setInterval(() => {
                 countDown --;
-                __timeLog(countDown, '秒后继续操作');
+                if (countDown > 0) {
+                    __timeLog(countDown, '秒后继续操作');
+                } else {
+                    clearInterval(__interval);
+                }
             }, 1e3)
         }
         _window.setTimeout(() => {
@@ -269,7 +273,7 @@
             } else {
                 alert("可以停掉了");
             }
-        }, (longTime ? totalSeconds : 5) * 1e3);
+        }, totalSeconds * 1e3);
     }
     const observer = new MutationObserver(() => {
         if (__timeout) _window.clearTimeout(__timeout);
