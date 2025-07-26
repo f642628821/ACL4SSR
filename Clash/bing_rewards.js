@@ -4,7 +4,7 @@
 // @version      2024-06-16
 // @description  try to take over the world!
 // @run-at document-end
-// @author       You
+// @author       https://github.com/f642628821
 // @match        https://*.bing.com/search*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bing.com
 // @grant        GM_registerMenuCommand
