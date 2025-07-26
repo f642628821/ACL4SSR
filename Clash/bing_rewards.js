@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         必应积分搜索任务
 // @namespace    http://tampermonkey.net/
-// @version      2024-06-16
+// @version      2025-07-26
 // @description  try to take over the world!
 // @run-at document-end
 // @author       https://github.com/f642628821
