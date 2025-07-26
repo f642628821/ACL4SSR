@@ -112,11 +112,11 @@
         run();
     }, 5e3);
     const longTime = true,
-          totalSeconds = (longTime ? 15 * 60 : 5);
+          totalSeconds = (longTime ? (Math.floor(Math.random() * 8) + 3) * 60 : 5);
     function run () {
         if (isRunning) return;
         isRunning = true;
-        if (longTime) {
+        //if (longTime) {
             let countDown = totalSeconds;
             let __interval = setInterval(() => {
                 countDown --;
@@ -126,7 +126,7 @@
                     clearInterval(__interval);
                 }
             }, 1e3)
-        }
+        //}
         _window.setTimeout(() => {
             __log("开始执行操作...");
             window.scrollTo(0, _window.document.body.clientHeight + 9000);
@@ -245,9 +245,14 @@
                 let keyword = '';
                 if (currentCount < maxCount) {
                     localStorage.setItem(currentCountKey, currentCount+1);
-                    const $els = _window.document.querySelectorAll('#brsv3 ul.b_vList li a'),
+                    let $els = _window.document.querySelectorAll('#brsv3 ul.b_vList li a'),
                           idx = getRandomNumber(0, $els.length - 1, false),
                           $el = $els[idx];
+                    if (!$els.length) {
+                        $els = _window.document.querySelectorAll('#b_context .richrsrailsuggestion a');
+                        idx = getRandomNumber(0, $els.length - 1, false);
+                        $el = $els[idx];
+                    }
                     __log("idx:", idx, 'els length:', $els.length, '$el:', $el?.innerText, $el);
                     if ($el) {
                         keyword = $el.innerText.trim();
