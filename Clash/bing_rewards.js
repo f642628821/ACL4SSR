@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         必应积分搜索任务
 // @namespace    http://tampermonkey.net/
-// @version      2025-07-26
+// @version      2024-06-16
 // @description  try to take over the world!
 // @run-at document-end
-// @author       https://github.com/f642628821
+// @author       You
 // @match        https://*.bing.com/search*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bing.com
 // @grant        GM_registerMenuCommand
@@ -111,8 +111,8 @@
     const __timeout = _window.setTimeout(() => {
         run();
     }, 5e3);
-    const longTime = true,
-          totalSeconds = (longTime ? (Math.floor(Math.random() * 8) + 3) * 60 : 5);
+    const longTime = Math.random() > 0.499 ? true : false,
+          totalSeconds = (longTime ? (Math.floor(Math.random() * 8) + 3) * 60 : 50);
     function run () {
         if (isRunning) return;
         isRunning = true;
